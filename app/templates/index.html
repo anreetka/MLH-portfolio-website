@@ -49,8 +49,9 @@
         </div>
     </div>
 
+    {% if active_page == 'home' %}
     <div class="main-content">
-        <h2>Technical Skills</h2>
+        <h2 class="tech-h2">Technical Skills</h2>
         <div class="skills">
             <div class="confident">
                 <p>Confident:</p>
@@ -74,6 +75,11 @@
             </div>        
         </div>
     </div>
+    {% else %}
+    <div class="main-content">
+        {% block main %}{% endblock %}
+    </div>
+    {% endif %}
 </body>
 
 <footer>
