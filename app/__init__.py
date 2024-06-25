@@ -31,3 +31,26 @@ def education():
 
     return render_template('education.html', name=name, title="Education", education=education)
 
+@app.route('/hobbies')
+def hobbies():
+
+    hobbies=[
+        {
+            "activity":"Hiking",
+            "image": "https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+            "activity":"Chess",
+            "image": "https://en.chessbase.com/Portals/all/thumbs/112/112140%20(2).png"
+        },
+        {
+            "activity": "Badminton",
+            "image": "https://i0.wp.com/www.healthfitnessrevolution.com/wp-content/uploads/2014/03/badminton-1428047_1920-2.jpg?resize=1024%2C683&ssl=1"
+        },
+        {
+            "activity": "Gardening",
+            "image": "https://st2.depositphotos.com/1194063/5332/i/450/depositphotos_53326813-stock-photo-farmer-planting-young-seedlings.jpg"
+        }
+    ]
+
+    return render_template('hobbies.html',  name=name, title="Hobbies", hobbies=hobbies)
