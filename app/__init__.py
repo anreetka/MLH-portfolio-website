@@ -54,3 +54,9 @@ def hobbies():
     ]
 
     return render_template('hobbies.html',  name=name, title="Hobbies", hobbies=hobbies)
+
+
+
+@app.route('/map')
+def map():
+    return render_template('map.html', name=name, title="Map")
