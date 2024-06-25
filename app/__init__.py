@@ -5,7 +5,12 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
+name="Anreet Kaur"
 
 @app.route('/')
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
+    active_page = 'home'
+    return render_template('index.html', name="Anreet Kaur", active_page=active_page, url=os.getenv("URL"))
+
+
+
