@@ -22,5 +22,12 @@ def work_experiences():
     ]
     return render_template('work_experiences.html', name=name, title="Work Experiences", work_experiences=work_experiences)
 
+@app.route('/education')
+def education():
 
+    education=[
+        {'institution': 'Sheridan College', 'degree': 'Computer Science Co-op (3-year)', 'duration': 'Dec 2025'}
+    ]
+
+    return render_template('education.html', name=name, title="Education", education=education)
 
