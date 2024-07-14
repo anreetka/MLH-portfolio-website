@@ -1,0 +1,101 @@
+{% extends "index.html" %}
+
+{% block title %}Timeline{% endblock %}
+
+{% block main %}
+
+<div class="container mb-5">
+    <h2 class="display-4 mb-3">Create a Post</h2>
+    <form id="form" action="/api/timeline_post" method="post">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input-name">Name</label>
+            <input type="text" class="form-control" name="name" id="input-name" placeholder="John Doe">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="input-email">Email</label>
+            <input type="email" class="form-control" name="email" id="input-email" placeholder="example@email.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-content">Content</label>
+            <textarea class="form-control" id="input-content" name="content" rows="3" placeholder="Start typing and share your ideas.."></textarea>
+        </div>
+
+        <button type="submit" id="post-btn" class="btn btn-dark mt-2 w-100 " >Publish</button>
+    </form>
+</div>
+
+<div class="container mt-3 mb-5">
+    <h2 class="display-4">Recent Posts</h2>
+    <div class="container mt-4" style="display:flex; flex-wrap: wrap;">
+        {% for a in post_data %}
+            <div class="card bg-light mb-3 mr-3" style="width: 30%">
+                <div class="card-header" style="display: flex; justify-content: space-between;">
+                    <span>{{a.name}}, {{a.email}}</span>
+                    <span class="delete-post" data-name="{{ a.name }}" data-email="{{ a.email }}">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{a.content}}</h5>
+                    <p class="card-text">{{a.created_at}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<script>
+   const form = document.getElementById('form');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('/api/timeline_post', {
+            method: 'POST',
+            body: formData,
+            })
+            .then(res => res.json())
+            .then(data => {
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    })
+
+
+        const deletePostIcons = document.querySelectorAll('.delete-post');
+
+        deletePostIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                const name = this.getAttribute('data-name');
+                const email = this.getAttribute('data-email');
+
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+
+
+                fetch('/api/delete_timeline_post', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.text())
+                .then(data => {
+                window.location.reload();
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+</script>
+
+
+{% endblock %}
