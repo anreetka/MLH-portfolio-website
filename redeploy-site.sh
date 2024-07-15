@@ -12,6 +12,8 @@ source python3-virtualenv/bin/activate
 
 pip install -r requirements.txt
 
-tmux new-session -d -s mlh-portolfio-website-server 'cd ~/MLH-portfolio-website && source python3-virtualenv/bin/activate && flask run --host=0.0.0.0'
+systemctl daemon-reload
+
+systemctl restart myportfolio
 
 echo "Site has successfully been redeployed! :)"
