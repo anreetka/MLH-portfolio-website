@@ -34,7 +34,7 @@ name="Anreet Kaur"
 def index():
 
     education=[
-            {'institution': 'Sheridan College', 'degree': 'Associate\'s degree - Software Eng. Co-op', 'duration': '2022-2025', 'image':'https://www.transitionresourceguide.ca/sites/default/files/styles/hero_image/public/img/hero/Sheridan_1.png?itok=ZdEp8P3X'}
+            {'institution': 'Sheridan College', 'degree': 'Associate\'s degree - Software Eng. Co-op', 'duration': '2022 - 2025', 'image':'https://www.transitionresourceguide.ca/sites/default/files/styles/hero_image/public/img/hero/Sheridan_1.png?itok=ZdEp8P3X'}
     ]
 
     work_experiences=[
