@@ -3,10 +3,12 @@ from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 from peewee import *
 import datetime
-from playhouse.shortcuts import model_to_dict 
+from playhouse.shortcuts import model_to_dict
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '../example.env')
-load_dotenv(dotenv_path=dotenv_path)
+"""dotenv_path = os.path.join(os.path.dirname(__file__), '../example.env')
+load_dotenv(dotenv_path=dotenv_path)"""
+
+load_dotenv(dotenv_path='example.env')
 app = Flask(__name__)
 
 mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
@@ -84,7 +86,7 @@ def post_time_line_post():
     timeline_post= TimelinePost.create(name=name, email=email, content=content)
 
     return model_to_dict(timeline_post)
-    
+
 #get all the timeline posts
 @app.route('/api/timeline_post', methods=['GET'])
 def get_time_line_post():
@@ -108,10 +110,10 @@ def delete_time_line_post():
             deleted_time = selected_post.created_at
             selected_post.delete_instance()
             return f"\nRecent post by {name} and {email} at {deleted_time} has been deleted."
-    
+
     except DoesNotExist:
         return f"\nA post from {name} at {email} was not found in the database. please check again!"
-    
+
 
 @app.route('/timeline')
 def timeline():
