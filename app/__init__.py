@@ -96,8 +96,6 @@ def post_time_line_post():
     if not email or "@" not in email:
         return jsonify({"error": "Invalid email"}), 400
 
-    # Assuming you have some logic to save the data to the database here
-
     return jsonify({"message": "Post created"}), 201
 
 #get all the timeline posts
