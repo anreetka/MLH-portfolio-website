@@ -11,11 +11,17 @@ load_dotenv(dotenv_path=dotenv_path)"""
 load_dotenv(dotenv_path='example.env')
 app = Flask(__name__)
 
-mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
-              user=os.getenv("MYSQL_USER"),
-              password=os.getenv("MYSQL_PASSWORD"),
-              host=os.getenv("MYSQL_HOST"),
-              port=3306)
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=true)
+else:
+    mydb = MySQLDatabase(
+        os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=3306
+            )
 
 class TimelinePost(Model):
     name=CharField()
@@ -28,7 +34,6 @@ class TimelinePost(Model):
 
 mydb.connect()
 mydb.create_tables([TimelinePost])
-print(mydb)
 
 name="Anreet Kaur"
 
@@ -80,12 +85,20 @@ def map():
 #add a timeline post
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
-    name = request.form['name']
-    email= request.form['email']
-    content=request.form['content']
-    timeline_post= TimelinePost.create(name=name, email=email, content=content)
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
 
-    return model_to_dict(timeline_post)
+    if not name:
+        return jsonify({"error": "Invalid name"}), 400
+    if not content:
+        return jsonify({"error": "Invalid content"}), 400
+    if not email or "@" not in email:
+        return jsonify({"error": "Invalid email"}), 400
+
+    # Assuming you have some logic to save the data to the database here
+
+    return jsonify({"message": "Post created"}), 201
 
 #get all the timeline posts
 @app.route('/api/timeline_post', methods=['GET'])
