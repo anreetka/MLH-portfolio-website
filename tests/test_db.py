@@ -2,6 +2,7 @@ import unittest
 import os
 from peewee import SqliteDatabase
 from app import app, TimelinePost
+from playhouse.shortcuts import model_to_dict
 
 os.environ['TESTING'] = 'true'
 
@@ -44,7 +45,7 @@ class TestTimelinePost(unittest.TestCase):
 
         posts = TimelinePost.select().order_by(TimelinePost.id)
 
-        post_list = [model_to_dict(post) for post in posts]
+        post_list = [model_to_dict(post, exclude=[TimelinePost.created_at]) for post in posts]
 
         expected_posts = [
             {'id': 1, 'name': 'John Doe', 'email': 'john@example.com', 'content': "Hello world, I'm John!"},
