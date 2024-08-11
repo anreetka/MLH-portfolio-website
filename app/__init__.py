@@ -42,7 +42,7 @@ def index():
     ]
 
     work_experiences=[
-            {'company': 'Royal Bank of Canada - RBC', 'position': 'Incoming Software Engineering Intern', 'duration': 'Fall 2024', 'description': 'Product and Services - Technology & Operations Department'},
+            {'company': 'Royal Bank of Canada - RBC', 'position': 'Incoming Software Engineering Intern', 'duration': 'Fall 2024', 'description': 'Digital Product and Services - Technology & Operations Department'},
             {'company': 'MLH Fellowship', 'position': 'Meta Production Engineering Fellow', 'duration': 'Jun 2024 - Present', 'description': 'Received acceptance into highly selective (acceptance rate < 2.5%) Production Engineering program sponsored by Meta'},
             {'company':'SIRT Centre - Research', 'position': 'Junior Programmer Intern', "duration": 'Jan 2024 - Apr 2024', 'description':'VR / Game Development using Unreal Engine 5 and C++. Got nominated for Generator Student Awards 2024 in "Team Collaboration in Research" category for outstanding teamwork in the Virtual Reality project during my internship'},
             {'company':'SkillHat', 'position': 'DTTP Web Development Fellow', "duration": 'Jan 2024 - Mar 2024', 'description':'Selected from over 1,000+ applicants for a $10,000 scholarship for this 3-month tech fellowship. Developed push notification features for a community project with JavaScript and Web Push Library, allowing smoother integration with Express js backend'},
