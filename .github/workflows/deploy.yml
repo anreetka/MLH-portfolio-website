@@ -32,6 +32,4 @@ jobs:
         run: ssh -o StrictHostKeyChecking=no my-vps 'echo "SSH Connection Successful"'
 
       - name: Print project root directory
-        run: ssh my-vps 'cd $PROJECT_ROOT && pwd'
-        env:
-          PROJECT_ROOT: ${{secrets.PROJECT_ROOT}}
+        run: ssh my-vps 'cd ${{secrets.PROJECT_ROOT}} && pwd'
