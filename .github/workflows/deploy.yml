@@ -29,8 +29,7 @@ jobs:
           SSH_IP: ${{secrets.SSH_IP}}
 
       - name: Test SSH Connection
-      run: ssh -o StrictHostKeyChecking=no my-vps 'echo "SSH Connection Successful"'
-
+        run: ssh -o StrictHostKeyChecking=no my-vps 'echo "SSH Connection Successful"'
 
       - name: Print project root directory
         run: ssh my-vps 'cd ${{secrets.PROJECT_ROOT}} && pwd'
